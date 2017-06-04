@@ -7,9 +7,9 @@
     "antialiasing_boost": true,
     "smooth_pixmap": true,
 
-    "node_font": "Arial",
+    "node_font": "Akkurat",
     "node_font_size": 12,
-    "attr_font": "Arial",
+    "attr_font": "Akkurat-Mono",
     "attr_font_size": 10,
     "mouse_bounding_box": 80,
 

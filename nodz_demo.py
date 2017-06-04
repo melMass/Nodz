@@ -1,10 +1,14 @@
-from Qt import QtCore
-from . import nodz_main
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
+from Qt import QtCore, QtWidgets
+from Nodz import nodz_main
+
+app = QtWidgets.QApplication(sys.argv)
 nodz = nodz_main.Nodz(None)
-# nodz.loadConfig(filePath='')
 nodz.initialize()
-nodz.show()
+# nodz.loadConfig(filePath='')
 
 ######################################################################
 # Test signals
@@ -258,4 +262,8 @@ nodz.clearGraph()
 
 nodz.loadGraph(filePath='Enter your path')
 
-nodz.debug()
+#nodz.debug()
+
+
+nodz.show()
+sys.exit(app.exec_())

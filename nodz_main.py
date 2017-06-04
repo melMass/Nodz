@@ -75,7 +75,8 @@ class Nodz(QtWidgets.QGraphicsView):
         inFactor = 1.15
         outFactor = 1 / inFactor
 
-        if event.delta() > 0:
+        if event.angleDelta().y() > 0:
+            print(event.angleDelta())
             zoomFactor = inFactor
         else:
             zoomFactor = outFactor
@@ -93,7 +94,7 @@ class Nodz(QtWidgets.QGraphicsView):
                 event.modifiers() == QtCore.Qt.AltModifier):
             self.currentState = 'ZOOM_VIEW'
             self.zoomInitialPos = event.pos()
-            self.initMouse = QtWidgets.QCursor.pos()
+            self.initMouse = QtGui.QCursor.pos()
             self.initMousePos = event.pos()
             self.setInteractive(False)
 
@@ -330,10 +331,10 @@ class Nodz(QtWidgets.QGraphicsView):
 
         """
         if self.scene().selectedItems():
-            itemsArea = self._getSelectionBoundingbox()
+            itemsArea = QtCore.QRectF(self._getSelectionBoundingbox())
             self.fitInView(itemsArea, QtCore.Qt.KeepAspectRatio)
         else:
-            itemsArea = self.scene().itemsBoundingRect()
+            itemsArea = QtCore.QRectF(self.scene().itemsBoundingRect())
             self.fitInView(itemsArea, QtCore.Qt.KeepAspectRatio)
 
     def _getSelectionBoundingbox(self):
