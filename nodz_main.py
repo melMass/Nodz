@@ -1531,7 +1531,7 @@ class SlotItem(QtWidgets.QGraphicsItem):
                 bbSize=config['mouse_bounding_box'])
 
             # Get nodes in pointer's bounding box.
-            targets = self.scene().items(mbb)
+            targets = self.scene().items(QtCore.QRectF(mbb))
 
             if any(isinstance(target, NodeItem) for target in targets):
                 if self.parentItem() not in targets:
@@ -1963,7 +1963,7 @@ class ConnectionItem(QtWidgets.QGraphicsPathItem):
             bbSize=config['mouse_bounding_box'])
 
         # Get nodes in pointer's bounding box.
-        targets = self.scene().items(mbb)
+        targets = self.scene().items(QtCore.QRectF(mbb))
 
         if any(isinstance(target, NodeItem) for target in targets):
 
