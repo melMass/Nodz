@@ -6,7 +6,9 @@
     "antialiasing": true,
     "antialiasing_boost": true,
     "smooth_pixmap": true,
-
+    "scene_default": {
+        "bg":[40,40,40,255]
+    },
     "node_font": "Akkurat",
     "node_font_size": 12,
     "attr_font": "Akkurat-Mono",
@@ -23,7 +25,7 @@
 
     // Default colors > Edit values BUT do not delete.
     "alternate_value": 20,
-    "grid_color": [50, 50, 50, 255],
+    "grid_color": [255, 255, 255, 40],
     "slot_border": [50, 50, 50, 255],
     "non_connectable_color": [100, 100, 100, 255],
     "connection_color": [255, 155, 0, 255],

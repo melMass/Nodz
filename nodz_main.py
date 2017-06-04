@@ -452,11 +452,13 @@ class Nodz(QtWidgets.QGraphicsView):
         self.rubberband = QtWidgets.QRubberBand(QtWidgets.QRubberBand.Rectangle,
                                                 self)
 
+
         # Setup scene.
         scene = NodeScene(self)
         sceneWidth = config['scene_width']
         sceneHeight = config['scene_height']
         scene.setSceneRect(0, 0, sceneWidth, sceneHeight)
+
         self.setScene(scene)
 
         # Tablet zoom.
@@ -996,6 +998,8 @@ class NodeScene(QtWidgets.QGraphicsScene):
         Draw a grid in the background.
 
         """
+        sceneBG = config['scene_default']["bg"]
+
         if self.views()[0].gridVisToggle:
             leftLine = rect.left() - rect.left() % self.gridSize
             topLine = rect.top() - rect.top() % self.gridSize
@@ -1015,7 +1019,10 @@ class NodeScene(QtWidgets.QGraphicsScene):
             self.pen.setColor(utils._convertDataToColor(config['grid_color']))
             self.pen.setWidth(0)
             painter.setPen(self.pen)
+
+            painter.fillRect(QtCore.QRectF(rect), utils._convertDataToColor(sceneBG))
             painter.drawLines(lines)
+
 
     def updateScene(self):
         """
