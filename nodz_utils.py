@@ -25,8 +25,8 @@ def _convertDataToColor(data=None, alternate=False, av=20):
         if alternate:
             mult = _generateAlternateColorMultiplier(color, av)
 
-
-            color = QtGui.QColor(data[0]-(av*mult), data[1]-(av*mult), data[2]-(av*mult))
+            color = QtGui.QColor(data[0] - (av * mult), data[1] - (av * mult),
+                                 data[2] - (av * mult))
         return color
 
     # rgba
@@ -34,18 +34,20 @@ def _convertDataToColor(data=None, alternate=False, av=20):
         color = QtGui.QColor(data[0], data[1], data[2], data[3])
         if alternate:
             mult = _generateAlternateColorMultiplier(color, av)
-            color = QtGui.QColor(data[0]-(av*mult), data[1]-(av*mult), data[2]-(av*mult), data[3])
+            color = QtGui.QColor(data[0] - (av * mult), data[1] - (av * mult),
+                                 data[2] - (av * mult), data[3])
         return color
 
     # wrong
     else:
-        print 'Color from configuration is not recognized : ', data
-        print 'Can only be [R, G, B] or [R, G, B, A]'
-        print 'Using default color !'
+        print('Color from configuration is not recognized : ', data)
+        print('Can only be [R, G, B] or [R, G, B, A]')
+        print('Using default color !')
         color = QtGui.QColor(120, 120, 120)
         if alternate:
-            color = QtGui.QColor(120-av, 120-av, 120-av)
+            color = QtGui.QColor(120 - av, 120 - av, 120 - av)
         return color
+
 
 def _generateAlternateColorMultiplier(color, av):
     """
@@ -60,9 +62,10 @@ def _generateAlternateColorMultiplier(color, av):
 
     """
     lightness = color.lightness()
-    mult = float(lightness)/255
+    mult = float(lightness) / 255
 
     return mult
+
 
 def _createPointerBoundingBox(pointerPos, bbSize):
     """
@@ -87,6 +90,7 @@ def _createPointerBoundingBox(pointerPos, bbSize):
 
     return bb
 
+
 def _swapListIndices(inputList, oldIndex, newIndex):
     """
     Simply swap 2 indices in a the specified list.
@@ -102,8 +106,7 @@ def _swapListIndices(inputList, oldIndex, newIndex):
 
     """
     if oldIndex == -1:
-        oldIndex = len(inputList)-1
-
+        oldIndex = len(inputList) - 1
 
     if newIndex == -1:
         newIndex = len(inputList)
@@ -111,6 +114,7 @@ def _swapListIndices(inputList, oldIndex, newIndex):
     value = inputList[oldIndex]
     inputList.pop(oldIndex)
     inputList.insert(newIndex, value)
+
 
 # IO
 def _loadConfig(filePath):
@@ -131,6 +135,7 @@ def _loadConfig(filePath):
 
     return data
 
+
 def _saveData(filePath, data):
     """
     save data as a .json file
@@ -143,13 +148,11 @@ def _saveData(filePath, data):
 
     """
     f = open(filePath, "w")
-    f.write(json.dumps(data,
-                       sort_keys = True,
-                       indent = 4,
-                       ensure_ascii=False))
+    f.write(json.dumps(data, sort_keys=True, indent=4, ensure_ascii=False))
     f.close()
 
-    print "Data successfully saved !"
+    print("Data successfully saved !")
+
 
 def _loadData(filePath):
     """
@@ -164,6 +167,5 @@ def _loadData(filePath):
 
     json_file.close()
 
-    print "Data successfully loaded !"
+    print("Data successfully loaded !")
     return j_data
-
